@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% block extrahead %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        {% load static %}
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+        <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+        </style>
+        <link href="{% static 'css/cover.css' %}" rel="stylesheet">
+
+    <body class="text-center">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+            <header class="masthead mb-auto">
+                <div class="inner">
+                    <nav class="nav nav-masthead justify-content-center">
+                        <a id="navbar_index" class="nav-link active" href="{% url 'index' %}">Home</a>
+                        <a id="navbar_about" class="nav-link" href="#">About</a>
+                        {% if user.is_authenticated %}
+                            <a id="navbar_user" class="nav-link" href="{% url 'user_detail' pk=user.id %}">Account</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                        {% else %}
+                            <a id="navbar_login" class="nav-link" href="{% url 'login' %}">Log in</a>
+                            <a id="navbar_register" class="nav-link" href="{% url 'register' %}">Register</a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </header>
+            <br>
+                {% block content %}
+                    <!-- CONTENT -->
+                {% endblock %}
+            </main>
+            <footer class="mastfoot mt-auto">
+                <div class="inner">
+                </div>
+            </footer>
+        </div>
+    </body>
+    <script>
+        var current_url = window.location.pathname;
+        console.log(current_url)
+        switch (current_url) {
+            case '':
+                document.querySelector()
+        }
+    </script>
+</html>

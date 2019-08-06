@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}{{object.username}}{% endblock %}
+{% block content %}
+    <div class="container" style="width: 1000px; float: left;">
+        <div class="row">
+            <div class="col-9">
+                <table>
+                    {% for project in object.architectureproject_set.all %}
+                    <tr>
+                        <td><a href="{% url 'project_detail' pk=project.id %}">{{ project.name }}</a></td>
+                        <td>{{ project.architect.name }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col-3">
+                <dl>
+                     <dt>Username: </dt><dd class="mydd">{{ object.username }}</dd>
+                {% if object.first_name %}
+                     <dt>First name: </dt><dd class="mydd">{{ object.first_name }}</dd>
+                {% endif %}
+                {% if object.last_name %}
+                     <dt>First name: </dt><dd class="mydd">{{ object.last_name }}</dd>
+                {% endif %}
+                    <dt>Added projects: {{ object.architectureproject_set.count }}</dt>
+                <br>
+                    {% if request.user.pk == object.pk %}
+                        <dt class="mydd"><a href="{% url 'modify_user' pk=object.pk %}"><button class="btn btn-success">Edit your user data</button></a></dt>
+                        <dd></dd>
+                        <dt class="mydd"><a href="{% url 'change_password' %}"><button class="btn btn-danger">Change password</button></a></dt>
+                        <dd></dd>
+                    {% endif %}
+                </dl>
+            </div>
+        </div>
+    </div>
+{% endblock %}

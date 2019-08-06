@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}{{object.name}}{% endblock %}
+{% block content %}
+    <div class="container" style="width: 1000px; float: left;">
+        <div class="row">
+            <div class="col-9">
+                {% load static %}
+                {% if photo %}
+                <img src="{{ photo.path.url }}" alt="{{ photo.path.url }}" style="max-width:100%; max-height:100%;">
+                {% endif %}
+                <br>
+                <br>
+                <p class="lead" style="font-size: 16px; text-align: justify;">
+                    {{object.description}}
+                </p>
+            </div>
+            <div class="col-3">
+                <dl>
+                    {% for key, value in project_data.items %}
+                     <dt>{{ key }}</dt>
+                     <dd class="mydd">{{ value }}</dd>
+                    {% endfor %}
+                    <dt>Likes: {{ likes_nr.count }}</dt>
+                    {% if request.user.is_authenticated %}
+                        {% if request.user in likes_nr %}
+                            <dd class="mydd"><a href="{% url 'unlike' project_id=object.id %}"><button class="btn btn-dark">Unlike</button></a></dd>
+                        {% else %}
+                            <dd class="mydd"><a href="{% url 'like' project_id=object.id %}"><button class="btn btn-success">Like project</button></a></dd>
+                        {% endif %}
+                    {% endif %}
+                </dl>
+            </div>
+        </div>
+    </div>
+{% endblock %}
