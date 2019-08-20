@@ -98,7 +98,11 @@ class UpdateUser(LoginRequiredMixin, UpdateView):
 
 class AddProject(LoginRequiredMixin, View):
     def get(self, request):
-        context = {'form': AddProjectForm(user=request.user, initial={'longitude': request.GET.get('lon'), 'latitude': request.GET.get('lat')})}
+        context = {'form': AddProjectForm(user=request.user, initial={
+            'longitude': request.GET.get('lon'),
+            'latitude': request.GET.get('lat')
+        }
+                                          )}
         return render(request, 'add_project.html', context=context)
 
     def post(self, request):

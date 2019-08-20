@@ -2,11 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        {% block extrahead %}{% endblock %}
         <title>{% block title %}{% endblock %}</title>
         {% load static %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block scripts %}
+        {% endblock %}
+
     </head>
         <style>
       .bd-placeholder-img {
@@ -55,12 +58,4 @@
             </footer>
         </div>
     </body>
-    <script>
-        var current_url = window.location.pathname;
-        console.log(current_url)
-        switch (current_url) {
-            case '':
-                document.querySelector()
-        }
-    </script>
 </html>

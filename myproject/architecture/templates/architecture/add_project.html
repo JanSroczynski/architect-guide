@@ -3,14 +3,10 @@
 {% block title %}
 Add project
 {% endblock %}
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var arch_name = document.querySelector("input[name='architect_name']");
-        var arch_desc = document.querySelector("input[name='architect_description']");
-        var arch_country = document.querySelector("input[name='architect_country']");
-        console.log(arch_name, arch_desc, arch_country);
-    });
-    </script>
+{% block scripts %}
+{% load static %}
+    <script src="{% static 'js/add_project.js' %}"></script>
+{% endblock %}
 {% block content %}
     <div class="my_form_div">
     <h2>Add project</h2>
@@ -20,42 +16,4 @@ Add project
             <button type="submit" class="btn btn-dark">Add Project</button>
         </form>
     </div>
-    <script>
-    document.addEventListener("DOMContentLoaded", function(){
-        var div_architect = document.querySelector('div #div_id_architect');
-        var architect_name = document.querySelector('div #div_id_architect_name');
-        var architect_description = document.querySelector('div #div_id_architect_description');
-        console.log(architect_name, architect_description);
-        architect_name.style.display= 'none';
-        architect_description.style.display= 'none';
-        var form = div_architect.parentElement;
-        var button = document.createElement('button');
-        button.className = 'btn btn-success';
-        button.innerText = 'Add architect';
-        //button = button.prop("type", "button");
-        form.insertBefore(button, div_architect.nextSibling);
-
-        function toggle_buttons(event) {
-            event.stopImmediatePropagation();
-            console.log('click');
-            console.log(div_architect.style.display);
-            if (div_architect.style.display !== 'none') {
-                div_architect.style.display = 'none';
-                architect_name.style.display= 'block';
-                architect_description.style.display= 'block';
-                button.className = 'btn btn-danger';
-                button.innerText = 'Show list of architects';
-                div_architect.querySelector('select option[selected]').value = ""
-            } else {
-                div_architect.style.display = 'block';
-                architect_name.style.display= 'none';
-                architect_description.style.display= 'none';
-                button.className = 'btn btn-success';
-                button.innerText = 'Add architect';
-            }
-        }
-        div_architect.querySelector('select option[selected]').value = "";
-        button.addEventListener('click', toggle_buttons)
-    });
-    </script>
 {% endblock %}
