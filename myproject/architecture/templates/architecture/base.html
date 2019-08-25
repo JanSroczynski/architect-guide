@@ -7,6 +7,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="{% static 'js/navbar.js' %}"></script>
         {% block scripts %}
         {% endblock %}
 
@@ -30,32 +31,23 @@
         <link href="{% static 'css/cover.css' %}" rel="stylesheet">
 
     <body class="text-center">
-        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-
-            <header class="masthead mb-auto">
-                <div class="inner">
-                    <nav class="nav nav-masthead justify-content-center">
-                        <a id="navbar_index" class="nav-link active" href="{% url 'index' %}">Home</a>
-                        <a id="navbar_about" class="nav-link" href="#">About</a>
-                        {% if user.is_authenticated %}
-                            <a id="navbar_user" class="nav-link" href="{% url 'user_detail' pk=user.id %}">Account</a>
-                            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
-                        {% else %}
-                            <a id="navbar_login" class="nav-link" href="{% url 'login' %}">Log in</a>
-                            <a id="navbar_register" class="nav-link" href="{% url 'register' %}">Register</a>
-                        {% endif %}
-                    </nav>
-                </div>
-            </header>
-            <br>
+        <div class="w-100 p-3" style="height: 15px;">
+            <nav class="nav nav-masthead justify-content-center">
+                <a id="navbar_index" class="nav-link" href="{% url 'index' %}">Home</a>
+                <a id="navbar_about" class="nav-link" href="#">About</a>
+                {% if user.is_authenticated %}
+                    <a id="navbar_user" class="nav-link" href="{% url 'user_detail' pk=user.id %}">Account</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                {% else %}
+                    <a id="navbar_login" class="nav-link" href="{% url 'login' %}">Log in</a>
+                    <a id="navbar_register" class="nav-link" href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </nav>
+        </div>
+        <div class="w-100 p-2 mx-auto" style="float: left; display: block;">
                 {% block content %}
                     <!-- CONTENT -->
                 {% endblock %}
-            </main>
-            <footer class="mastfoot mt-auto">
-                <div class="inner">
-                </div>
-            </footer>
         </div>
     </body>
 </html>

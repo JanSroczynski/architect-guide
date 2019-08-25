@@ -19,14 +19,14 @@ Index
 <!-- Container -->
 <div id="container" style="width: 100%;">
     <!-- optional filtering  in Header -->
-    <div id="header" class="container" style="background-color: black;">
+    <div id="header" class="container p-0" style="background-color: black;">
     {# <button href="#" id="map_add_points" class="btn btn-dark" style="float: left;">Show all projects</button> #}
     {# <button href="#" id="map_choosen_points" class="btn btn-dark" style="float: left;">Show only verified projects</button> #}
     </div>
     <!-- END Header -->
 
     <!-- Map Content -->
-    <div style="align: center;">
+    <div>
         {% for object in data_points %}
             <div class="map_datapoints" data-longitude="{{ object.longitude }}" data-latitude="{{ object.latitude }}"
                  data-id="{{ object.pk }}" data-name="{{ object.name }}" data-likes="{{ object.user_likes.count }}"></div>
