@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, FormView, UpdateView
-from .models import *
+
 from .forms import *
 
 

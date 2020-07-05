@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-from django_countries.fields import CountryField
 
 from .models import ArchitectureProject, Architect, Photo
 
@@ -47,7 +46,9 @@ class AddProjectForm(ModelForm):
 
     class Meta:
         model = ArchitectureProject
-        fields = ('photo', 'name', 'description', 'adress', 'city', 'country', 'project_category', 'architect', 'latitude', 'longitude')
+        fields = (
+            'photo', 'name', 'description', 'adress', 'city', 'country', 'project_category', 'architect', 'latitude',
+            'longitude')
         widgets = {'latitude': forms.HiddenInput, 'longitude': forms.HiddenInput}
 
     def clean_architect(self):
@@ -80,5 +81,3 @@ class AddProjectForm(ModelForm):
         Photo.objects.create(category=1, architecture_project=new_project, created_by=created_by,
                              path=self.cleaned_data["photo"], title=True)
         return new_project
-
-
